@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pastor 앱 box — 신현성 목사의 사역 도구 상자</title>
+<meta name="description" content="설교 준비부터 찬양 콘티, 수련회 장소, 청빙 정보까지. 목회 현장에서 바로 쓰는 도구들을 한 상자에 담았습니다.">
+<meta property="og:title" content="Pastor 앱 box">
+<meta property="og:description" content="설교 준비부터 찬양 콘티, 수련회 장소, 청빙 정보까지. 목회 현장에서 바로 쓰는 도구 상자.">
+<meta property="og:type" content="website">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#f4f1e8;color:#1e3a5f;line-height:1.6}
+  header{background:linear-gradient(135deg,#16283f 0%,#1e3a5f 55%,#2a4a73 100%);color:#fff;padding:48px 20px 40px;text-align:center;position:relative;overflow:hidden}
+  header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,#f0b429,#f5d67a,#f0b429)}
+  .box-badge{display:inline-block;border:1px solid #f0b429;color:#f5d67a;border-radius:999px;padding:4px 14px;font-size:13px;letter-spacing:1px;margin-bottom:16px}
+  h1{font-size:clamp(32px,7vw,52px);letter-spacing:-1px;line-height:1.15}
+  h1 span{color:#f0b429}
+  .subtitle{margin-top:14px;font-size:17px;color:#dbe4f0}
+  .owner{margin-top:8px;font-size:14px;color:#aebdd0}
+  .wrap{max-width:1060px;margin:0 auto;padding:28px 18px 60px}
+  /* 내 소개 */
+  .intro{background:#fff;border-radius:20px;border:1px solid #e3ddc9;box-shadow:0 4px 18px rgba(30,58,95,.07);padding:26px;display:flex;gap:22px;align-items:center;margin-bottom:28px}
+  .intro img{width:120px;height:120px;object-fit:cover;border-radius:50%;border:4px solid #f0b429;flex-shrink:0;background:#e8eef5}
+  .intro h2{font-size:24px}
+  .intro .motto{color:#f0b429;font-weight:800;margin:2px 0 8px}
+  .intro p{font-size:15px;color:#4a5a70}
+  .intro-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .intro-links a{display:inline-block;text-decoration:none;font-weight:800;font-size:14px;padding:10px 16px;border-radius:999px}
+  .intro-links a.gold{background:#f0b429;color:#1e3a5f}
+  .intro-links a.navy{background:#1e3a5f;color:#fff}
+  .intro-links a.line{border:1.5px solid #1e3a5f;color:#1e3a5f}
+  @media(max-width:600px){.intro{flex-direction:column;text-align:center}.intro-links{justify-content:center}}
+  .search{margin:0 auto 22px;max-width:560px}
+  .search input{width:100%;padding:14px 18px;border-radius:999px;border:2px solid #d9d2bf;font-size:16px;background:#fff;outline:none}
+  .search input:focus{border-color:#f0b429}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:8px}
+  .tabs button{border:1.5px solid #1e3a5f;background:transparent;color:#1e3a5f;padding:8px 16px;border-radius:999px;font-size:14px;cursor:pointer;font-weight:700}
+  .tabs button.on{background:#1e3a5f;color:#fff}
+  .tabs button:hover{background:#1e3a5f;color:#fff}
+  .cat-title{font-size:20px;margin:30px 4px 14px;padding-left:12px;border-left:5px solid #f0b429}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+  .card{background:#fff;border-radius:18px;padding:24px;border:1px solid #e3ddc9;box-shadow:0 4px 18px rgba(30,58,95,.07);display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(30,58,95,.14)}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .icon{font-size:38px;line-height:1}
+  .free{background:#fdf3d7;color:#8a6400;border:1px solid #f0b429;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .card h3{font-size:21px;margin:14px 0 6px}
+  .card p{font-size:15px;color:#4a5a70;flex:1}
+  .tag{margin-top:14px;font-size:13px;color:#8a97a8}
+  .open{display:inline-block;margin-top:16px;background:#1e3a5f;color:#fff;text-decoration:none;text-align:center;padding:12px;border-radius:12px;font-weight:800}
+  .open:hover{background:#f0b429;color:#1e3a5f}
+  .note{margin-top:34px;background:#fff;border-left:5px solid #f0b429;border-radius:12px;padding:18px 20px;font-size:15px}
+  .note b{color:#1e3a5f}
+  footer{text-align:center;padding:26px 16px 40px;color:#7a8798;font-size:14px}
+  footer b{color:#1e3a5f}
+  .empty{display:none;text-align:center;padding:40px;color:#7a8798}
+  @media(max-width:480px){header{padding:36px 16px 30px}.card{padding:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="box-badge">목회 현장 도구 상자</div>
+  <h1>Pastor <span>앱 box</span></h1>
+  <p class="subtitle">설교 준비부터 예배, 사역 정보까지.<br>필요할 때 꺼내 쓰는 목사님의 도구 상자입니다.</p>
+  <p class="owner">신현성 목사 · 살아나는교회</p>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <img src="https://shs-revivechurch.netlify.app/%EC%8B%A0%ED%98%84%EC%84%B1%20%EB%AA%A9%EC%82%AC%20_%20%EC%82%B4%EC%95%84%EB%82%98%EB%8A%94%20%EA%B5%90%ED%9A%8C_files/profile.png" alt="신현성 목사 사진" onerror="this.style.display='none'">
+    <div>
+      <h2>신현성 목사</h2>
+      <p class="motto">살아나서 살리는</p>
+      <p>살아나는교회(리바이브처치) · 예장 통합<br>광주 서구 화정로 126 (2층) · 주일 예배 오전 11:00</p>
+      <div class="intro-links">
+        <a class="gold" href="https://shs-revivechurch.netlify.app/" target="_blank" rel="noopener">교회 홈페이지 보기</a>
+        <a class="navy" href="card.html">디지털 명함 보기</a>
+        <a class="line" href="tel:010-2658-5162">전화 010-2658-5162</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="search"><input id="q" type="search" placeholder="도구 이름으로 찾기 (예: 설교, 찬양, 수련회)" oninput="filter()"></div>
+
+  <div class="tabs" id="tabs">
+    <button class="on" onclick="setCat('all',this)">전체</button>
+    <button onclick="setCat('sermon',this)">설교 준비</button>
+    <button onclick="setCat('worship',this)">예배 · 찬양</button>
+    <button onclick="setCat('ministry',this)">교회 · 사역</button>
+  </div>
+
+  <h2 class="cat-title" data-cat-title="sermon">📖 설교 준비</h2>
+  <div class="grid" data-cat-group="sermon">
+    <article class="card" data-cat="sermon" data-name="graceslide pro 설교 슬라이드 성경">
+      <div class="top"><div class="icon">📖</div><span class="free">무료</span></div>
+      <h3>GraceSlide Pro</h3>
+      <p>성경 본문을 넣으면 설교 슬라이드가 만들어집니다. 글자 크기와 사진 크기를 자유롭게 조절해 강단 화면에 맞게 쓸 수 있습니다.</p>
+      <div class="tag">설교 준비 · 슬라이드</div>
+      <a class="open" href="https://graceslide-pro.vercel.app" target="_blank" rel="noopener">열기 →</a>
+    </article>
+
+    <article class="card" data-cat="sermon" data-name="설교프롬프터 원고 낭독 자동 스크롤">
+      <div class="top"><div class="icon">🎤</div><span class="free">무료</span></div>
+      <h3>설교프롬프터</h3>
+      <p>설교 원고를 붙여넣으면 화면이 천천히 흘러가며 낭독까지 도와줍니다. 강단에서 원고를 들고 읽지 않아도 되는 프롬프터입니다.</p>
+      <div class="tag">설교 준비 · 원고</div>
+      <a class="open" href="https://sermon-prompter.vercel.app" target="_blank" rel="noopener">열기 →</a>
+    </article>
+  </div>
+
+  <h2 class="cat-title" data-cat-title="worship">🎵 예배 · 찬양</h2>
+  <div class="grid" data-cat-group="worship">
+    <article class="card" data-cat="worship" data-name="찬양콘티 악보 콘티 자동 배치">
+      <div class="top"><div class="icon">🎵</div><span class="free">무료</span></div>
+      <h3>찬양콘티</h3>
+      <p>악보 사진을 붙여넣으면 예배 순서에 맞게 자동으로 배치해 인쇄용 콘티를 만듭니다. A4·A3, 8곡·10곡 배치가 됩니다.</p>
+      <div class="tag">예배 · 찬양 · 콘티</div>
+      <a class="open" href="https://chanyang-conti-six.vercel.app" target="_blank" rel="noopener">열기 →</a>
+    </article>
+  </div>
+
+  <h2 class="cat-title" data-cat-title="ministry">🏠 교회 · 사역</h2>
+  <div class="grid" data-cat-group="ministry">
+    <article class="card" data-cat="ministry" data-name="전국 수련회 장소 리스트 수양관">
+      <div class="top"><div class="icon">🏕️</div><span class="free">무료</span></div>
+      <h3>전국 수련회 장소 리스트</h3>
+      <p>전국 276곳의 수련회 장소를 지역별로 찾아보고, 지도와 전화번호를 바로 확인할 수 있습니다. 방문 전에는 꼭 전화로 먼저 확인하세요.</p>
+      <div class="tag">교회 · 사역 · 수련회</div>
+      <a class="open" href="https://suyang-list.vercel.app" target="_blank" rel="noopener">열기 →</a>
+    </article>
+
+    <article class="card" data-cat="ministry" data-name="호남 청빙 도우미 목회자 청빙">
+      <div class="top"><div class="icon">💼</div><span class="free">무료</span></div>
+      <h3>호남 청빙 도우미</h3>
+      <p>호남신학대 관련 청빙 소식을 매일 정리해 보여줍니다. 새로운 소식이 올라오면 자동으로 갱신됩니다.</p>
+      <div class="tag">교회 · 사역 · 청빙</div>
+      <a class="open" href="https://honam-cheongbing.vercel.app" target="_blank" rel="noopener">열기 →</a>
+    </article>
+
+    <article class="card" data-cat="ministry" data-name="살아나는교회 홈페이지 리바이브처치 교회 소개">
+      <div class="top"><div class="icon">🏠</div><span class="free">무료</span></div>
+      <h3>살아나는교회 홈페이지</h3>
+      <p>살아나는교회 홈페이지입니다. 목사님 소개와 학력·사역 경력, 교회 10대지침과 예배 안내를 한곳에서 확인할 수 있습니다.</p>
+      <div class="tag">교회 소개 · 광주</div>
+      <a class="open" href="https://shs-revivechurch.netlify.app/" target="_blank" rel="noopener">열기 →</a>
+    </article>
+
+    <article class="card" data-cat="ministry" data-name="살아나는교회 소개 페이지 우리교회 한 장">
+      <div class="top"><div class="icon">⛪</div><span class="free">무료</span></div>
+      <h3>살아나는교회 소개 페이지</h3>
+      <p>광주 살아나는교회를 소개하는 페이지입니다. 예배 시간과 교회 소식, 유튜브 채널을 한곳에서 확인할 수 있습니다.</p>
+      <div class="tag">교회 소개 · 광주</div>
+      <a class="open" href="https://urichurch-page.vercel.app/살아나는교회" target="_blank" rel="noopener">열기 →</a>
+    </article>
+  </div>
+
+  <p class="empty" id="empty">찾는 도구가 없습니다. 다른 단어로 검색해 보세요.</p>
+
+  <div class="note">
+    📦 <b>이 상자는 계속 채워집니다.</b><br>
+    새 앱이 만들어질 때마다 여기에 추가됩니다. 즐겨찾기에 저장해 두시면 언제든 꺼내 쓰실 수 있습니다.
+  </div>
+</main>
+
+<footer>
+  <b>앱 문의) shs목사 · ttd0732@hanmail.net</b><br>
+  Pastor 앱 box · 신현성 목사 · 살아나는교회
+</footer>
+
+<script>
+let cat='all';
+function setCat(c,btn){
+  cat=c;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  filter();
+}
+function filter(){
+  const q=(document.getElementById('q').value||'').trim();
+  let shown=0;
+  document.querySelectorAll('.card').forEach(card=>{
+    const okCat = cat==='all' || card.dataset.cat===cat;
+    const okQ = !q || card.dataset.name.includes(q) || card.querySelector('h3').textContent.includes(q);
+    card.style.display = (okCat && okQ) ? '' : 'none';
+    if(okCat && okQ) shown++;
+  });
+  document.querySelectorAll('[data-cat-title]').forEach(title=>{
+    const c = title.dataset.catTitle;
+    const groupShown = (cat==='all' || cat===c) && Array.from(document.querySelectorAll('[data-cat-group="'+c+'"] .card')).some(card=>card.style.display!=='none');
+    title.style.display = groupShown ? '' : 'none';
+  });
+  document.getElementById('empty').style.display = shown ? 'none' : 'block';
+}
+</script>
+</body>
+</html>
