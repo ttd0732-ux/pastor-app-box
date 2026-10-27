@@ -14,7 +14,7 @@
   .back{color:#f5d67a;text-decoration:none;font-weight:700;font-size:14px}
   .icon{font-size:52px;margin:18px 0 6px}
   h1{font-size:30px;line-height:1.3}
-  .lock{display:inline-block;background:#1e3a5f;color:#fff;border:1px solid #1e3a5f;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:10px}
+  .lock{display:inline-block;background:#d32f2f;color:#fff;border:2px solid #d32f2f;font-size:14px;font-weight:900;padding:6px 13px;border-radius:999px;margin-top:10px;box-shadow:0 2px 8px rgba(211,47,47,.35)}
   .free{display:inline-block;background:#fdf3d7;color:#8a6400;border:1px solid #f0b429;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:10px}
   .views{background:#fff;border:1px solid #e3ddc9;border-radius:14px;padding:16px 18px;margin:22px 0;display:flex;flex-wrap:wrap;gap:18px;font-size:15px}
   .views b{font-size:19px}
@@ -48,7 +48,7 @@
     <div><span>누적 조회</span><b id="vTotal">집계 중</b>회</div>
   </div>
 
-  <p id="lockNote" style="display:none;background:#fff;border:1px solid #e3ddc9;border-radius:14px;padding:14px 18px;font-size:15px;margin-bottom:18px">🔒 이 앱은 비번이 필요합니다. 앱 화면에서 운영자 키 또는 이 앱의 비번을 입력하세요.</p>
+  <p id="lockNote" style="display:none;background:#fff;border:1px solid #e3ddc9;border-radius:14px;padding:14px 18px;font-size:15px;margin-bottom:18px">🔑 이 앱은 비번이 필요합니다. 앱 화면에서 운영자 키 또는 이 앱의 비번을 입력하세요.</p>
 
   <section class="card">
     <h2>이 앱은 어떤 앱인가요?</h2>
@@ -119,7 +119,7 @@ document.getElementById('appIcon').textContent = app.icon;
 document.getElementById('appTitle').textContent = app.title;
 var badge = document.getElementById('appBadge');
 var lockNote = document.getElementById('lockNote');
-if (app.access === 'lock') { badge.textContent = '🔒 비번 필요'; badge.className = 'lock'; if (lockNote) lockNote.style.display = 'block'; }
+if (app.access === 'lock') { badge.textContent = '🔑 비번 필요'; badge.className = 'lock'; if (lockNote) lockNote.style.display = 'block'; }
 else { badge.textContent = '무료'; badge.className = 'free'; }
 document.getElementById('appDesc').textContent = app.desc;
 document.getElementById('appFeatures').innerHTML = app.features.map(function(f){ return '<li>' + f + '</li>'; }).join('');
