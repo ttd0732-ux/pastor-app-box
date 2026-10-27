@@ -13,7 +13,7 @@
 <meta property="og:image:height" content="630">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#f4f1e8;color:#1e3a5f;line-height:1.6}
+  body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#f4f1e8;color:#1e3a5f;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
   header{background:linear-gradient(135deg,#16283f 0%,#1e3a5f 55%,#2a4a73 100%);color:#fff;padding:48px 20px 40px;text-align:center;position:relative;overflow:hidden}
   header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,#f0b429,#f5d67a,#f0b429)}
   .box-badge{display:inline-block;border:1px solid #f0b429;color:#f5d67a;border-radius:999px;padding:4px 14px;font-size:13px;letter-spacing:1px;margin-bottom:16px}
@@ -69,7 +69,9 @@
   .record h2{font-size:20px;margin-bottom:6px;padding-left:12px;border-left:5px solid #f0b429}
   .record .sub{font-size:14px;color:#7a8798;margin-bottom:14px}
   .record table{width:100%;border-collapse:collapse;font-size:14px}
-  .record th,.record td{border-bottom:1px solid #eee;padding:10px 6px;text-align:center}
+  .record th,.record td{border-bottom:1px solid #eee;padding:10px 6px;text-align:center;word-break:keep-all}
+  .record th{white-space:nowrap}
+  .record td:nth-child(n+2){white-space:nowrap}
   .record th{background:#f4f1e8}
   .record td:first-child,.record th:first-child{text-align:left}
   .site-views{display:flex;flex-wrap:wrap;gap:18px;margin:10px 0 18px;font-size:15px}
@@ -80,7 +82,7 @@
   footer{text-align:center;padding:26px 16px 40px;color:#7a8798;font-size:14px}
   footer b{color:#1e3a5f}
   .empty{display:none;text-align:center;padding:40px;color:#7a8798}
-  @media(max-width:480px){header{padding:36px 16px 30px}.card{padding:20px}}
+  @media(max-width:480px){header{padding:36px 16px 30px}.card{padding:20px}.record{padding:18px 12px}.record th,.record td{font-size:13px;padding:8px 4px}footer{font-size:13px}}
 </style>
 </head>
 <body>
@@ -107,7 +109,7 @@
     </div>
   </section>
 
-  <div class="search"><input id="q" type="search" placeholder="도구 이름으로 찾기 (예: 설교, 찬양, 수련회)" oninput="filter()"></div>
+  <div class="search"><input id="q" type="search" placeholder="도구 이름으로 찾기" oninput="filter()"></div>
 
   <div class="tabs" id="tabs">
     <button class="on" onclick="setCat('all',this)">전체</button>
@@ -201,7 +203,7 @@
 </main>
 
 <footer>
-  <b>앱 문의) shs목사 · ttd0732@hanmail.net (<a href="tel:010-2658-5162" style="color:inherit">010-2658-5162</a>)</b><br>
+  <b>앱 문의) shs목사 · <span style="white-space:nowrap">ttd0732@hanmail.net</span> (<span style="white-space:nowrap"><a href="tel:010-2658-5162" style="color:inherit">010-2658-5162</a></span>)</b><br>
   Pastor 앱 box · 신현성 목사 · 살아나는교회
 </footer>
 
