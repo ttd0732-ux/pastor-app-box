@@ -50,6 +50,17 @@
   .tag{margin-top:14px;font-size:13px;color:#8a97a8}
   .open{display:inline-block;margin-top:16px;background:#1e3a5f;color:#fff;text-decoration:none;text-align:center;padding:12px;border-radius:12px;font-weight:800}
   .open:hover{background:#f0b429;color:#1e3a5f}
+
+  .record{background:#fff;border:1px solid #e3ddc9;border-radius:18px;padding:24px;margin-top:34px}
+  .record h2{font-size:20px;margin-bottom:6px;padding-left:12px;border-left:5px solid #f0b429}
+  .record .sub{font-size:14px;color:#7a8798;margin-bottom:14px}
+  .record table{width:100%;border-collapse:collapse;font-size:14px}
+  .record th,.record td{border-bottom:1px solid #eee;padding:10px 6px;text-align:center}
+  .record th{background:#f4f1e8}
+  .record td:first-child,.record th:first-child{text-align:left}
+  .site-views{display:flex;flex-wrap:wrap;gap:18px;margin:10px 0 18px;font-size:15px}
+  .site-views b{font-size:19px}
+  .site-views span{color:#7a8798;font-size:13px;display:block}
   .note{margin-top:34px;background:#fff;border-left:5px solid #f0b429;border-radius:12px;padding:18px 20px;font-size:15px}
   .note b{color:#1e3a5f}
   footer{text-align:center;padding:26px 16px 40px;color:#7a8798;font-size:14px}
@@ -146,6 +157,27 @@
     📦 <b>이 상자는 계속 채워집니다.</b><br>
     새 앱이 만들어질 때마다 여기에 추가됩니다. 즐겨찾기에 저장해 두시면 언제든 꺼내 쓰실 수 있습니다.
   </div>
+
+  <section class="record" id="record">
+    <h2>📊 조회 기록</h2>
+    <p class="sub">Pastor 앱 box와 각 앱의 조회수입니다. 새로고침은 같은 세션에서 중복 집계되지 않습니다.</p>
+    <div class="site-views">
+      <div><span>Pastor 앱 box · 오늘 조회</span><b id="siteToday">집계 중</b>회</div>
+      <div><span>Pastor 앱 box · 이번 주 조회</span><b id="siteWeek">집계 중</b>회</div>
+      <div><span>Pastor 앱 box · 누적 조회</span><b id="siteTotal">집계 중</b>회</div>
+    </div>
+    <table>
+      <thead><tr><th>앱</th><th>오늘</th><th>이번 주</th><th>누적</th></tr></thead>
+      <tbody>
+        <tr><td>GraceSlide Pro</td><td><span id="v-graceslide-today">집계 중</span></td><td><span id="v-graceslide-week">집계 중</span></td><td><span id="v-graceslide-total">집계 중</span></td></tr>
+        <tr><td>설교프롬프터</td><td><span id="v-prompter-today">집계 중</span></td><td><span id="v-prompter-week">집계 중</span></td><td><span id="v-prompter-total">집계 중</span></td></tr>
+        <tr><td>찬양콘티</td><td><span id="v-chanyang-today">집계 중</span></td><td><span id="v-chanyang-week">집계 중</span></td><td><span id="v-chanyang-total">집계 중</span></td></tr>
+        <tr><td>전국 수련회 장소 리스트</td><td><span id="v-suyang-today">집계 중</span></td><td><span id="v-suyang-week">집계 중</span></td><td><span id="v-suyang-total">집계 중</span></td></tr>
+        <tr><td>호남 청빙 도우미</td><td><span id="v-cheongbing-today">집계 중</span></td><td><span id="v-cheongbing-week">집계 중</span></td><td><span id="v-cheongbing-total">집계 중</span></td></tr>
+      </tbody>
+    </table>
+    <p class="sub" style="margin-top:12px">앱별 조회수는 상세페이지를 연 횟수입니다. Pastor 앱 box 자체 조회수는 이 페이지를 연 횟수입니다.</p>
+  </section>
 </main>
 
 <footer>
@@ -177,6 +209,59 @@ function filter(){
   });
   document.getElementById('empty').style.display = shown ? 'none' : 'block';
 }
+</script>
+
+<script>
+(function(){
+  function fmt(n){ try { return Number(n).toLocaleString('ko-KR'); } catch(e){ return n; } }
+  function seoulDate(){
+    try {
+      var parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+      var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
+      return o.year + '-' + o.month + '-' + o.day;
+    } catch(e) {
+      var d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+  }
+  function mondayOf(dateStr){
+    var d = new Date(dateStr + 'T00:00:00');
+    var day = d.getDay();
+    d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+  var today = seoulDate(), monday = mondayOf(today);
+  function fetchOne(key, mode){
+    return fetch('https://countapi.mileshilliard.com/api/v1/' + mode + '/' + encodeURIComponent(key))
+      .then(function(r){ if (!r.ok) throw new Error('bad'); return r.json(); })
+      .then(function(j){ return j.value; })
+      .catch(function(){ return null; });
+  }
+  function setText(id, val){ var el = document.getElementById(id); if (el) el.textContent = (val === null || val === undefined) ? '-' : fmt(val); }
+  // Site total: hit once per session
+  var siteCounted = false;
+  try { siteCounted = sessionStorage.getItem('pastor-app-box-site-counted') === '1'; } catch(e) {}
+  if (!siteCounted) { try { sessionStorage.setItem('pastor-app-box-site-counted', '1'); } catch(e) {} }
+  var siteMode = siteCounted ? 'get' : 'hit';
+  var siteBase = 'pastor-app-box-site';
+  Promise.all([
+    fetchOne(siteBase + '-day-' + today, siteMode),
+    fetchOne(siteBase + '-week-' + monday, siteMode),
+    fetchOne(siteBase, siteMode)
+  ]).then(function(vals){ setText('siteToday', vals[0]); setText('siteWeek', vals[1]); setText('siteTotal', vals[2]); });
+  // Per-app: read only (detail page already counts a view)
+  ['graceslide','prompter','chanyang','suyang','cheongbing'].forEach(function(slug){
+    var base = 'pastor-app-box-detail-' + slug;
+    Promise.all([
+      fetchOne(base + '-day-' + today, 'get'),
+      fetchOne(base + '-week-' + monday, 'get'),
+      fetchOne(base, 'get')
+    ]).then(function(vals){
+      setText('v-' + slug + '-today', vals[0]);
+      setText('v-' + slug + '-week', vals[1]);
+      setText('v-' + slug + '-total', vals[2]);
+    });
+  });
+})();
 </script>
 </body>
 </html>
