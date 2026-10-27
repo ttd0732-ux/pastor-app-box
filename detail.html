@@ -14,6 +14,7 @@
   .back{color:#f5d67a;text-decoration:none;font-weight:700;font-size:14px}
   .icon{font-size:52px;margin:18px 0 6px}
   h1{font-size:30px;line-height:1.3}
+  .lock{display:inline-block;background:#1e3a5f;color:#fff;border:1px solid #1e3a5f;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:10px}
   .free{display:inline-block;background:#fdf3d7;color:#8a6400;border:1px solid #f0b429;font-size:12px;font-weight:800;padding:3px 9px;border-radius:999px;margin-top:10px}
   .views{background:#fff;border:1px solid #e3ddc9;border-radius:14px;padding:16px 18px;margin:22px 0;display:flex;flex-wrap:wrap;gap:18px;font-size:15px}
   .views b{font-size:19px}
@@ -36,7 +37,7 @@
     <a class="back" href="index.html">← Pastor 앱 box로 돌아가기</a>
     <div class="icon" id="appIcon">📖</div>
     <h1 id="appTitle">앱 상세</h1>
-    <span class="free">무료</span>
+    <span id="appBadge" class="free">무료</span>
   </div>
 </header>
 
@@ -46,6 +47,8 @@
     <div><span>이번 주 조회</span><b id="vWeek">집계 중</b>회</div>
     <div><span>누적 조회</span><b id="vTotal">집계 중</b>회</div>
   </div>
+
+  <p id="lockNote" style="display:none;background:#fff;border:1px solid #e3ddc9;border-radius:14px;padding:14px 18px;font-size:15px;margin-bottom:18px">🔒 이 앱은 비번이 필요합니다. 앱 화면에서 운영자 키 또는 이 앱의 비번을 입력하세요.</p>
 
   <section class="card">
     <h2>이 앱은 어떤 앱인가요?</h2>
@@ -74,31 +77,31 @@
 <script>
 var APPS = {
   graceslide: {
-    icon: '📖', title: 'GraceSlide Pro', url: 'https://graceslide-pro.vercel.app',
+    icon: '📖', title: 'GraceSlide Pro', url: 'https://graceslide-pro.vercel.app', access: 'lock',
     desc: '성경 본문을 넣으면 설교 슬라이드가 만들어지는 앱입니다. 말씀 추출부터 슬라이드 구성, 그림 넣기까지 강단 화면에 맞게 준비할 수 있습니다.',
     features: ['성경 본문 입력으로 설교 슬라이드 생성', 'PPT·PDF 저장', '성경 폰트 선택과 텍스트 정렬, 여러 레이아웃', '슬라이드마다 다른 그림 불러오기', '글자 크기와 사진 크기를 제한 없이 조절'],
     steps: ['성경 본문을 입력해 말씀을 추출합니다.', '슬라이드를 구성하고 필요하면 슬라이드별로 그림을 불러옵니다.', '글자·사진 크기를 조절한 뒤 PPT나 PDF로 저장합니다.']
   },
   prompter: {
-    icon: '🎤', title: '설교프롬프터', url: 'https://sermon-prompter.vercel.app',
+    icon: '🎤', title: '설교프롬프터', url: 'https://sermon-prompter.vercel.app', access: 'lock',
     desc: '설교 원고를 붙여넣으면 화면이 천천히 흘러가며 낭독까지 도와주는 프롬프터입니다. 강단에서 원고를 들고 읽지 않아도 됩니다.',
     features: ['원고 붙여넣기와 소제목 자동 인식', '자동 스크롤 속도 3단계와 미세 조절', '한국어 낭독(전체·섹션별·배속)', '글꼴·글자 크기·밝게/어둡게·가이드선·전체화면 설정', '원고 저장함, 설교 타이머와 예상 소요 시간, 목차 점프'],
     steps: ['설교 정보와 원고를 붙여넣습니다.', '자동 스크롤 속도와 화면 설정을 맞춥니다.', '재생을 눌러 프롬프터를 보며 설교합니다. 필요하면 낭독 기능을 켭니다.']
   },
   chanyang: {
-    icon: '🎵', title: '찬양콘티', url: 'https://chanyang-conti-six.vercel.app',
+    icon: '🎵', title: '찬양콘티', url: 'https://chanyang-conti-six.vercel.app', access: 'lock',
     desc: '악보 사진을 붙여넣으면 예배 순서에 맞게 자동으로 배치해 인쇄용 콘티를 만드는 앱입니다.',
     features: ['악보 사진 붙여넣기와 끌어놓기', '흰 여백 자동 자르기와 높이 통일', 'A4·A3 가로·세로 자동 배치, 8곡·10곡 배치', '사진 회전과 순서 변경', '자동 저장, 콘티 파일 저장·불러오기, PDF로 저장'],
     steps: ['예배 날짜와 제목을 입력합니다.', '악보 사진을 복사해 붙여넣거나 끌어놓습니다.', '순서와 배치를 확인한 뒤 PDF로 저장해 인쇄합니다.']
   },
   suyang: {
-    icon: '🏕️', title: '전국 수련회 장소 리스트', url: 'https://suyang-list.vercel.app',
+    icon: '🏕️', title: '전국 수련회 장소 리스트', url: 'https://suyang-list.vercel.app', access: 'free',
     desc: '전국 276곳의 수련회 장소를 지역별로 찾아보고 지도와 전화번호를 바로 확인할 수 있는 앱입니다.',
     features: ['전국 276곳, 17개 지역별 정리', '지역 탭과 이름 검색', '카드 클릭 시 카카오맵으로 위치 확인', '전화번호 클릭 시 바로 전화 걸기'],
     steps: ['지역 탭을 고르거나 이름을 검색합니다.', '장소 카드를 눌러 위치와 전화번호를 확인합니다.', '방문 전에는 꼭 전화로 먼저 확인합니다.']
   },
   cheongbing: {
-    icon: '💼', title: '호남 청빙 도우미', url: 'https://honam-cheongbing.vercel.app',
+    icon: '💼', title: '호남 청빙 도우미', url: 'https://honam-cheongbing.vercel.app', access: 'free',
     desc: '호남신학대 관련 청빙 소식을 매일 정리해 보여주는 앱입니다. 새로운 소식이 올라오면 자동으로 갱신됩니다.',
     features: ['호남신학대 관련 청빙 소식 정리', '매일 자동 갱신', '중복 소식 묶어 정리'],
     steps: ['앱을 엽니다.', '최신 청빙 소식을 확인합니다.', '자세한 내용은 원문 안내를 따라 확인합니다.']
@@ -113,6 +116,10 @@ var app = APPS[slug] || APPS.graceslide;
 document.title = app.title + ' — Pastor 앱 box';
 document.getElementById('appIcon').textContent = app.icon;
 document.getElementById('appTitle').textContent = app.title;
+var badge = document.getElementById('appBadge');
+var lockNote = document.getElementById('lockNote');
+if (app.access === 'lock') { badge.textContent = '🔒 비번 필요'; badge.className = 'lock'; if (lockNote) lockNote.style.display = 'block'; }
+else { badge.textContent = '무료'; badge.className = 'free'; }
 document.getElementById('appDesc').textContent = app.desc;
 document.getElementById('appFeatures').innerHTML = app.features.map(function(f){ return '<li>' + f + '</li>'; }).join('');
 document.getElementById('appSteps').innerHTML = app.steps.map(function(s){ return '<li>' + s + '</li>'; }).join('');
