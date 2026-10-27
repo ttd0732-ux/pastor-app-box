@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>앱 상세 — Pastor 앱 box</title>
 <meta name="description" content="Pastor 앱 box에 담긴 앱의 이용법과 기능을 소개하는 상세 페이지입니다.">
+<meta name="theme-color" content="#1e3a5f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#f4f1e8;color:#1e3a5f;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
@@ -204,6 +208,9 @@ function mondayOf(dateStr) {
     });
   });
 })();
+</script>
+<script>
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js').catch(function(){}); }
 </script>
 </body>
 </html>
