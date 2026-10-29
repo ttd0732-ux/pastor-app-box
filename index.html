@@ -176,6 +176,14 @@
       <a class="open" href="detail.html?app=cheongbing" target="_blank" rel="noopener">자세히 보기 →</a>
     </article>
 
+    <article class="card" data-cat="ministry" data-name="대심방 심방 말씀 기도 방문">
+            <div class="shot"><img src="https://daesimbang.vercel.app/icon.svg" alt="대심방 화면" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+<div class="top"><div class="icon">🏠</div><span class="lock">🔑 비번 필요</span></div>
+      <h3>대심방</h3>
+      <p>목사님이 심방 가실 때, 상황별·구절별로 말씀과 기도를 바로 찾는 앱입니다. 12개 카테고리·60개 상황, 구절별 11단계 심방 순서와 녹음·변환, 전체 다운로드가 됩니다.</p>
+      <div class="tag">교회 · 사역 · 심방</div>
+      <a class="open" href="detail.html?app=daesimbang" target="_blank" rel="noopener">자세히 보기 →</a>
+    </article>
 
   </div>
 
@@ -214,6 +222,7 @@
         <tr><td>찬양콘티</td><td><span id="v-chanyang-today">집계 중</span></td><td><span id="v-chanyang-week">집계 중</span></td><td><span id="v-chanyang-total">집계 중</span></td></tr>
         <tr><td>전국 수련회 장소 리스트</td><td><span id="v-suyang-today">집계 중</span></td><td><span id="v-suyang-week">집계 중</span></td><td><span id="v-suyang-total">집계 중</span></td></tr>
         <tr><td>호남 청빙 도우미</td><td><span id="v-cheongbing-today">집계 중</span></td><td><span id="v-cheongbing-week">집계 중</span></td><td><span id="v-cheongbing-total">집계 중</span></td></tr>
+        <tr><td>대심방</td><td><span id="v-daesimbang-today">집계 중</span></td><td><span id="v-daesimbang-week">집계 중</span></td><td><span id="v-daesimbang-total">집계 중</span></td></tr>
         <tr><td>도장 메이커</td><td><span id="v-seal-today">집계 중</span></td><td><span id="v-seal-week">집계 중</span></td><td><span id="v-seal-total">집계 중</span></td></tr>
       </tbody>
     </table>
@@ -290,7 +299,7 @@ function filter(){
     fetchOne(siteBase, siteMode)
   ]).then(function(vals){ setText('siteToday', vals[0]); setText('siteWeek', vals[1]); setText('siteTotal', vals[2]); });
   // Per-app: read only (detail page already counts a view)
-  ['graceslide','prompter','chanyang','suyang','cheongbing','seal'].forEach(function(slug){
+  ['graceslide','prompter','chanyang','suyang','cheongbing','daesimbang','seal'].forEach(function(slug){
     var base = 'pastor-app-box-detail-' + slug;
     Promise.all([
       fetchOne(base + '-day-' + today, 'get'),
