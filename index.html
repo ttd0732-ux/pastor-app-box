@@ -175,6 +175,15 @@
       <a class="open" href="detail.html?app=cheongbing" target="_blank" rel="noopener">자세히 보기 →</a>
     </article>
 
+    <article class="card" data-cat="ministry" data-name="도장 메이커 개인 법인 인감 직인">
+            <div class="shot"><img src="shot-seal.svg" alt="도장 메이커 화면" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+<div class="top"><div class="icon">印</div><span class="free">무료</span></div>
+      <h3>도장 메이커</h3>
+      <p>이름만 적으면 개인·교회 도장 샘플이 바로 나옵니다. 로그인·비번 없이 누구나 무료로 쓰고, PNG·JPG로 내려받아 문서에 찍을 수 있습니다.</p>
+      <div class="tag">교회 · 사역 · 도장</div>
+      <a class="open" href="detail.html?app=seal" target="_blank" rel="noopener">자세히 보기 →</a>
+    </article>
+
   </div>
 
   <p class="empty" id="empty">찾는 도구가 없습니다. 다른 단어로 검색해 보세요.</p>
@@ -200,6 +209,7 @@
         <tr><td>찬양콘티</td><td><span id="v-chanyang-today">집계 중</span></td><td><span id="v-chanyang-week">집계 중</span></td><td><span id="v-chanyang-total">집계 중</span></td></tr>
         <tr><td>전국 수련회 장소 리스트</td><td><span id="v-suyang-today">집계 중</span></td><td><span id="v-suyang-week">집계 중</span></td><td><span id="v-suyang-total">집계 중</span></td></tr>
         <tr><td>호남 청빙 도우미</td><td><span id="v-cheongbing-today">집계 중</span></td><td><span id="v-cheongbing-week">집계 중</span></td><td><span id="v-cheongbing-total">집계 중</span></td></tr>
+        <tr><td>도장 메이커</td><td><span id="v-seal-today">집계 중</span></td><td><span id="v-seal-week">집계 중</span></td><td><span id="v-seal-total">집계 중</span></td></tr>
       </tbody>
     </table>
     <p class="sub" style="margin-top:12px">앱별 조회수는 상세페이지를 연 횟수입니다. Pastor 앱 box 자체 조회수는 이 페이지를 연 횟수입니다.</p>
@@ -275,7 +285,7 @@ function filter(){
     fetchOne(siteBase, siteMode)
   ]).then(function(vals){ setText('siteToday', vals[0]); setText('siteWeek', vals[1]); setText('siteTotal', vals[2]); });
   // Per-app: read only (detail page already counts a view)
-  ['graceslide','prompter','chanyang','suyang','cheongbing'].forEach(function(slug){
+  ['graceslide','prompter','chanyang','suyang','cheongbing','seal'].forEach(function(slug){
     var base = 'pastor-app-box-detail-' + slug;
     Promise.all([
       fetchOne(base + '-day-' + today, 'get'),
