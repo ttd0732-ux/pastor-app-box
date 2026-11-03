@@ -155,6 +155,14 @@
       <div class="tag">예배 · 찬양 · 콘티</div>
       <a class="open" href="detail.html?app=chanyang" target="_blank" rel="noopener">자세히 보기 →</a>
     </article>
+    <article class="card" data-cat="worship" data-name="광고영상메이커 광고 영상 성우 목소리">
+      <div class="shot"><img src="shot-admaker.svg" alt="광고영상메이커 화면" loading="lazy" onerror="this.parentElement.style.display='none'"></div>
+      <div class="top"><div class="icon">🎬</div><span class="lock">🔑 비번 필요</span></div>
+      <h3>광고영상메이커</h3>
+      <p>광고 내용을 적으면 성우 같은 목소리로 읽어주는 광고 영상을 만듭니다. 목소리·배경음악·배경이 합쳐진 완성 영상을 다운로드받아 교회에서 바로 씁니다.</p>
+      <div class="tag">예배 · 광고 영상</div>
+      <a class="open" href="detail.html?app=admaker" target="_blank" rel="noopener">자세히 보기 →</a>
+    </article>
   </div>
 
   <h2 class="cat-title" data-cat-title="ministry">🏠 교회 · 사역</h2>
@@ -303,7 +311,7 @@ function filter(){
     fetchOne(siteBase, siteMode)
   ]).then(function(vals){ setText('siteToday', vals[0]); setText('siteWeek', vals[1]); setText('siteTotal', vals[2]); });
   // Per-app: read only (detail page already counts a view)
-  ['graceslide','prompter','chanyang','suyang','cheongbing','daesimbang','seal'].forEach(function(slug){
+  ['graceslide','prompter','chanyang','suyang','cheongbing','daesimbang','seal','admaker'].forEach(function(slug){
     var base = 'pastor-app-box-detail-' + slug;
     Promise.all([
       fetchOne(base + '-day-' + today, 'get'),
