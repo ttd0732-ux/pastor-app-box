@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300">
+  <rect width="720" height="300" fill="#1e3a5f"/>
+  <rect x="16" y="16" width="688" height="268" fill="none" stroke="#f0b429" stroke-width="6"/>
+  <text x="360" y="145" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="56" font-weight="bold" fill="#ffffff">전국 수련회 장소 리스트</text>
+  <rect x="300" y="168" width="120" height="4" fill="#f0b429"/>
+  <text x="360" y="215" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="30" fill="#f4f1e8">교회 수련회 장소 찾기</text>
+  <text x="360" y="255" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="24" fill="#f0b429">276곳 · 전화 · 지도</text>
+</svg>
