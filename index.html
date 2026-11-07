@@ -143,6 +143,15 @@
       <div class="tag">설교 준비 · 원고</div>
       <a class="open" href="detail.html?app=prompter" target="_blank" rel="noopener">자세히 보기 →</a>
     </article>
+
+    <article class="card" data-cat="sermon" data-name="설교 쇼츠 스튜디오 유튜브 쇼츠 자동화 데스크톱">
+            <div class="shot"><img src="shot-shorts.svg" alt="설교 쇼츠 스튜디오" loading="lazy" onerror="this.parentElement.style.display=\'none\'"></div>
+<div class="top"><div class="icon">🎬</div><span class="lock">🔑 비번 필요</span></div>
+      <h3>설교 쇼츠 스튜디오</h3>
+      <p>설교 유튜브 링크를 넣으면 AI가 쇼츠 대목을 골라 진짜 설교 영상(장면+소리)을 잘라 세로 쇼츠를 만들고, 디자인과 배경음악을 쇼츠마다 따로 골라 MP4로 받는 데스크톱 프로그램입니다. 유튜브에는 직접 올립니다.</p>
+      <div class="tag">설교 준비 · 쇼츠 · 유튜브</div>
+      <a class="open" href="detail.html?app=shorts" target="_blank" rel="noopener">자세히 보기 →</a>
+    </article>
   </div>
 
   <h2 class="cat-title" data-cat-title="worship">🎵 예배 · 찬양</h2>
@@ -231,6 +240,7 @@
       <tbody>
         <tr><td>GraceSlide Pro</td><td><span id="v-graceslide-today">집계 중</span></td><td><span id="v-graceslide-week">집계 중</span></td><td><span id="v-graceslide-total">집계 중</span></td></tr>
         <tr><td>설교프롬프터</td><td><span id="v-prompter-today">집계 중</span></td><td><span id="v-prompter-week">집계 중</span></td><td><span id="v-prompter-total">집계 중</span></td></tr>
+        <tr><td>설교 쇼츠 스튜디오</td><td><span id="v-shorts-today">집계 중</span></td><td><span id="v-shorts-week">집계 중</span></td><td><span id="v-shorts-total">집계 중</span></td></tr>
         <tr><td>찬양콘티</td><td><span id="v-chanyang-today">집계 중</span></td><td><span id="v-chanyang-week">집계 중</span></td><td><span id="v-chanyang-total">집계 중</span></td></tr>
         <tr><td>전국 수련회 장소 리스트</td><td><span id="v-suyang-today">집계 중</span></td><td><span id="v-suyang-week">집계 중</span></td><td><span id="v-suyang-total">집계 중</span></td></tr>
         <tr><td>호남 청빙 도우미</td><td><span id="v-cheongbing-today">집계 중</span></td><td><span id="v-cheongbing-week">집계 중</span></td><td><span id="v-cheongbing-total">집계 중</span></td></tr>
@@ -311,7 +321,7 @@ function filter(){
     fetchOne(siteBase, siteMode)
   ]).then(function(vals){ setText('siteToday', vals[0]); setText('siteWeek', vals[1]); setText('siteTotal', vals[2]); });
   // Per-app: read only (detail page already counts a view)
-  ['graceslide','prompter','chanyang','suyang','cheongbing','daesimbang','seal','admaker'].forEach(function(slug){
+  ['graceslide','prompter','shorts','chanyang','suyang','cheongbing','daesimbang','seal','admaker'].forEach(function(slug){
     var base = 'pastor-app-box-detail-' + slug;
     Promise.all([
       fetchOne(base + '-day-' + today, 'get'),
