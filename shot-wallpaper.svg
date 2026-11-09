@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a4a73"/>
+      <stop offset="1" stop-color="#16283f"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="300" fill="url(#bg)"/>
+  <rect x="16" y="16" width="688" height="268" fill="none" stroke="#f0b429" stroke-width="6"/>
+  <!-- 12개월을 뜻하는 금색 점 12개 -->
+  <g fill="#f0b429">
+    <circle cx="120" cy="58" r="7"/>
+    <circle cx="164" cy="58" r="7"/>
+    <circle cx="207" cy="58" r="7"/>
+    <circle cx="251" cy="58" r="7"/>
+    <circle cx="295" cy="58" r="7"/>
+    <circle cx="338" cy="58" r="7"/>
+    <circle cx="382" cy="58" r="7"/>
+    <circle cx="425" cy="58" r="7"/>
+    <circle cx="469" cy="58" r="7"/>
+    <circle cx="513" cy="58" r="7"/>
+    <circle cx="556" cy="58" r="7"/>
+    <circle cx="600" cy="58" r="7"/>
+  </g>
+  <text x="360" y="152" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="48" font-weight="bold" fill="#ffffff">목회 월별 배경화면 제작소</text>
+  <rect x="300" y="174" width="120" height="4" fill="#f0b429"/>
+  <text x="360" y="218" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="26" fill="#f4f1e8">2027년 12개월 · 달력 배경화면</text>
+  <text x="360" y="260" text-anchor="middle" font-family="'Malgun Gothic',sans-serif" font-size="20" fill="#f0b429">교회 이름 · 목회 메시지 · PNG 내려받기</text>
+</svg>
